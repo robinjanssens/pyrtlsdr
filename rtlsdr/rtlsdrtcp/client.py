@@ -103,6 +103,9 @@ class RtlSdrTcpClient(RtlSdrTcpBase):
     def set_gain(self, value):
         self._communicate_descriptor_set('gain', value)
 
+    def set_dithering(self, value):
+        self._communicate_descriptor_set('dithering', value)
+
     def get_freq_correction(self):
         return self._communicate_descriptor_get('freq_correction')
 

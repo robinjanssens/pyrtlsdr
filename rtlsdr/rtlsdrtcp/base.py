@@ -83,6 +83,7 @@ API_METHODS = (
     'get_sample_rate', 'set_sample_rate',
     'get_bandwidth', 'set_bandwidth',
     'get_gain', 'set_gain',
+    'set_dithering',
     'get_freq_correction', 'set_freq_correction',
     'get_gains',
     'get_tuner_type',
@@ -95,6 +96,7 @@ API_DESCRIPTORS = {
     'sample_rate', 'rs',
     'bandwidth',
     'gain',
+    'dithering',
     'freq_correction',
 }
 

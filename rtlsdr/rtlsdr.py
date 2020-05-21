@@ -73,6 +73,7 @@ class BaseRtlSdr(object):
     DEFAULT_FC = 80e6
     DEFAULT_RS = 1.024e6
     DEFAULT_READ_SIZE = 1024
+    DEFAULT_DITHERING = False
 
     CRYSTAL_FREQ = 28800000
 
@@ -197,6 +198,7 @@ class BaseRtlSdr(object):
         self.set_sample_rate(self.DEFAULT_RS)
         self.set_center_freq(self.DEFAULT_FC)
         self.set_gain(self.DEFAULT_GAIN)
+        self.set_dithering(self.DEFAULT_DITHERING)
 
     def close(self):
         if not self.device_opened:
@@ -335,6 +337,13 @@ class BaseRtlSdr(object):
             raise IOError('Error when getting gain')
 
         return result/10
+
+    def set_dithering(self, dithering):
+        result = librtlsdr.rtlsdr_set_dithering(self.dev_p, dithering)
+        if result < 0:
+            self.close()
+            raise LibUSBError(result, 'Could not set dithering to %d' % (dithering))
+        return
 
     def get_gains(self):
         """Get all supported gain values from driver
@@ -516,6 +525,7 @@ class BaseRtlSdr(object):
             The actual gain used is rounded to the nearest value supported by
             the device (see the values in :attr:`valid_gains_db`).
         """)
+    dithering = property(fset=set_dithering)
     freq_correction = property(get_freq_correction, set_freq_correction,
         doc="""int: Get/Set frequency offset of the tuner (in PPM)""")
     bandwidth = property(get_bandwidth, set_bandwidth,

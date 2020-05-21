@@ -43,6 +43,7 @@ sdr.sample_rate = 2.048e6  # Hz
 sdr.center_freq = 70e6     # Hz
 sdr.freq_correction = 60   # PPM
 sdr.gain = 'auto'
+sdr.dithering = False
 
 print(sdr.read_samples(512))
 ```
@@ -59,6 +60,7 @@ sdr = RtlSdr()
 sdr.sample_rate = 2.4e6
 sdr.center_freq = 95e6
 sdr.gain = 4
+sdr.dithering = False
 
 samples = sdr.read_samples(256*1024)
 sdr.close()

@@ -41,6 +41,7 @@ def main(**opts):
     rs = opts.get('rs', 2.4e6)
     fc = opts.get('fc', 100e6)
     gain = opts.get('gain', 10)
+    dithering = opts.get('dithering', False)
     num_reads = opts.get('num_reads', 2)
     num_samples = opts.get('num_samples', 256*1024)
     nfft = opts.get('nfft', 1024)
@@ -64,6 +65,7 @@ def main(**opts):
     sdr.rs = rs
     sdr.fc = fc
     sdr.gain = gain
+    sdr.dithering = dithering
     print('  sample rate: %0.6f MHz' % (sdr.rs/1e6))
     print('  center frequency: %0.6f MHz' % (sdr.fc/1e6))
     print('  gain: %d dB' % sdr.gain)
